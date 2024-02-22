@@ -1,0 +1,70 @@
+.round-button {
+    border: 1px solid var(--bs-link-color);
+    border-radius: var(--bs-border-radius);
+
+    width: calc(100% / 4);
+    height: 300px;
+    text-align: center;
+    vertical-align: center;
+    display: block;
+
+    font-size: 50px;
+
+    margin: 5px;
+}
+
+.round-button:hover * {
+    color: #dee2e6;
+}
+
+.round-button > a:hover {
+    text-decoration: auto;
+}
+
+.round-button > a {
+    line-height: 300px;
+    text-decoration: none;
+}
+
+.round-button > i {
+    color: var(--bs-link-color);
+}
+
+.round-button:hover {
+    border: none;
+    background: var(--bs-link-color);
+}
+
+.chat-desc {
+    color: var(--bs-secondary);
+    font-size: calc(var(--bs-body-font-size) * 0.75);
+    line-height: calc(var(--bs-body-line-height) / 2);
+}
+
+.chat-your-msg {
+    text-align: right;
+}
+
+.chat-msg-primary {
+    border: 1px solid var(--bs-link-color);
+    border-radius: var(--bs-border-radius);
+    color: #dee2e6;
+    background: var(--bs-link-color);
+    padding: 0.25rem 0.75rem;
+}
+
+.chat-msg-secondary {
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    padding: 0.25rem 0.75rem;
+}
+
+.musicScoreModalSubtitleIcon {
+	vertical-align: middle;
+	margin-right: 3px;
+	display: inline;
+}
+
+.plan-time {
+    font-family: "Courier New", Consolas, Inconsolata, "JetBrains Mono", Monaco, monospace;
+}

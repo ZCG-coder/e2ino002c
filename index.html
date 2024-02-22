@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Main Page</title>
+
+    <!-- region CSS -->
+    <!-- Bootstrap -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
+
+    <!-- Bootstrap icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Main -->
+    <link href="css/index.css" rel="stylesheet">
+    <!-- endregion -->
+</head>
+<body>
+<noscript>You will need JavaScript to run this application.</noscript>
+<!-- region Scripts -->
+<!-- Bootstrap -->
+<script crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Showdown -->
+<script crossorigin="anonymous"
+        integrity="sha384-GP2+CwBlakZSDJUr+E4JvbxpM75i1i8+RKkieQxzuyDZLG+5105E1OfHIjzcXyWH"
+        src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+
+<!-- Socket.io -->
+<script src="https://cdn.jsdelivr.net/npm/socket.io@4.7.4/client-dist/socket.io.min.js"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+		integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+<!-- Main Scripts -->
+<script src="js/index.js"></script>
+<script src="js/chat.js"></script>
+<!-- endregion -->
+
+<!-- Entry Points -->
+<div class="container text-center">
+    <div class="row">
+        <div class="col round-button">
+            <i class="bi bi-chat-dots-fill"></i>
+            <a data-bs-target="#chatModal" data-bs-toggle="modal" href="#">Chat</a>
+        </div>
+        <div class="col round-button">
+            <i class="bi bi-music-note-beamed"></i>
+            <a data-bs-target="#musicModal" data-bs-toggle="modal" href="#" onclick="loadAudio()">Music</a>
+        </div>
+        <div class="col round-button">
+            <i class="bi bi-door-open-fill"></i>
+            <a data-bs-target="#outingModal" data-bs-toggle="modal" href="#" onclick="loadOuting()">Outing</a>
+        </div>
+        <div class="col round-button">
+            <i class="bi bi-calendar-check-fill"></i>
+            <a data-bs-target="#planModal" data-bs-toggle="modal" href="#" onclick="loadPlan()">Plan</a>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Modal -->
+<div aria-hidden="true" aria-labelledby="chatModalLabel" class="modal fade" id="chatModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="chatModalLabel"><i class="bi bi-chat-dots-fill"></i> Chat</h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div id="chat-msg-body"></div> <!-- The chat area -->
+            </div>
+            <div class="modal-footer">
+                <div class="input-group mb-3"> <!-- Message input area -->
+                    <input aria-describedby="basic-addon1" aria-label="Message..." class="form-control" id="chat-input"
+                           placeholder="Message..."
+                           type="text">
+                    <button class="btn btn-primary" id="chat-send-btn" onclick="sendMsg();"><i class="bi bi-send"></i>
+                    </button>
+                </div>
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Music Modal -->
+<div aria-hidden="true" aria-labelledby="musicModalLabel" class="modal fade" id="musicModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="musicModalLabel"><i class="bi bi-music-note-beamed"></i> Music</h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tap on the song names to play</p>
+                <p>While playing, please sit down and relax while the device captures the motion.</p>
+                <ol class="list-group list-group-numbered" id="music-list"></ol>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Music Score Modal -->
+<div aria-hidden="true" aria-labelledby="musicScoreModalLabel" class="modal fade" id="musicScoreModal" tabindex="-2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="musicScoreModalLabel"><i class="bi bi-music-note-beamed"></i> <span id="musicScoreModalTitle"></span></h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <section id="musicScoreModalSubtitle"></section>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Dismiss
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Outing Modal -->
+<div aria-hidden="true" aria-labelledby="outingModalLabel" class="modal fade" id="outingModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="outingModalLabel"><i class="bi bi-door-open-fill"></i> Go for an
+                    outing</h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Session selection -->
+				<label for="outing-session-select">Select a session:</label>
+				<select class="form-select" id="outing-session-select" onchange="onOutingSessionChanged()">
+					<option value="0" selected>Select...</option>
+				</select>
+
+                <div id="outing-ttb">
+                    <!-- Things to bring -->
+                    <!-- <div class="form-check"> -->
+                        <!-- <input class="form-check-input" disabled id="outing-1" type="checkbox" value=""> -->
+                        <!-- <label class="form-check-label" for="outing-1"> -->
+                            <!-- ABCD -->
+                        <!-- </label> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="modal-footer">
+				<button class="btn btn-primary" type="button" onclick="toggleScanning()"><i class="bi bi-play-fill"
+				id="scanning-i"></i>
+					<span id="scanning-start-stop">Start</span> Scanning
+				</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Plan Modal -->
+<div aria-hidden="true" aria-labelledby="planModalLabel" class="modal fade" id="planModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="planModalLabel"><i class="bi bi-calendar-check-fill"></i> Plan the day
+                </h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <p><i class="bi bi-calendar-date"></i> The date today is <span id="plan-date"></span>.</p>
+
+                <div id="plan-body">
+                    <!--                    <label class="input-group-text" for="plan-1-type">08:00</label>-->
+                    <!--                    <select class="form-select" id="plan-1-type">-->
+                    <!--                        <option value="0" selected>Event Type...</option>-->
+                    <!--                        <option value="1">Work</option>-->
+                    <!--                        <option value="2">Listen to music / Relax</option>-->
+                    <!--                        <option value="3">Rest</option>-->
+                    <!--                        <option value="4">Outing</option>-->
+                    <!--                        <option disabled value>—————————————</option>-->
+                    <!--                        <option value="5">Others</option>-->
+                    <!--                    </select>-->
+                    <!--                    <textarea aria-label="Description" class="form-control" placeholder="Description (Optional)"-->
+                    <!--                              type="text"></textarea>-->
+                </div>
+            </div>
+            <div class="modal-footer">
+				<button class="btn btn-primary" data-bs-dismiss="modal" onclick="savePlan()" type="button"><i class="bi bi-floppy2-fill"></i>
+				Save and close</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

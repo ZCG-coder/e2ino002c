@@ -1,0 +1,35 @@
+{
+    "__comment__": "Contains all songs needed",
+    "songs": [
+        {
+            "name": "A Tranquil Touch",
+            "file": "1.mp3",
+            "author": "SchwartzSound",
+            "uuid": "0c422f3e-6c0f-41c6-a198-41fe6f13256e"
+        },
+        {
+            "name": "A Spiritual Surrounding",
+            "file": "2.mp3",
+            "author": "SchwartzSound",
+            "uuid": "03015dd6-0c89-4ff4-ba3a-7dad33914123"
+        },
+        {
+            "name": "Waterfall Dreams",
+            "file": "3.mp3",
+            "author": "AGsoundtrax",
+            "uuid": "4dabcece-2e5e-4035-9f1c-5b0bacd88666"
+        },
+        {
+            "name": "Rainforest",
+            "file": "4.mp3",
+            "author": "AGsoundtrax",
+            "uuid": "e959371f-64a8-4a52-997d-c41c5534e10f"
+        },
+        {
+            "name": "Nothing",
+            "file": "5.mp3",
+            "author": "Me",
+            "uuid": "6deed3a0-c7ba-4e70-9508-607bdb4f536d"
+        }
+    ]
+}
