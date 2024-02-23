@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 
     <title>Main Page</title>
 
@@ -22,6 +21,10 @@
 <body>
 <noscript>You will need JavaScript to run this application.</noscript>
 <!-- region Scripts -->
+
+<!-- Cookies -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+
 <!-- Bootstrap -->
 <script crossorigin="anonymous"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -37,11 +40,23 @@
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-		integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 
-<!-- Main Scripts -->
+<!-- region Scripts -->
+
+<!-- Settings -->
+<script src="js/settings.js"></script>
+<!-- Main -->
 <script src="js/index.js"></script>
+<!-- Audio -->
+<script src="js/audio.js"></script>
+<!-- Chat -->
 <script src="js/chat.js"></script>
+<!-- Outing -->
+<script src="js/outing.js"></script>
+<!-- Plan -->
+<script src="js/plan.js"></script>
+
 <!-- endregion -->
 
 <!-- Entry Points -->
@@ -62,6 +77,10 @@
         <div class="col round-button">
             <i class="bi bi-calendar-check-fill"></i>
             <a data-bs-target="#planModal" data-bs-toggle="modal" href="#" onclick="loadPlan()">Plan</a>
+        </div>
+        <div class="col round-button">
+            <i class="bi bi-person-fill-gear"></i>
+            <a data-bs-target="#settingsModal" data-bs-toggle="modal" href="#" onclick="loadSettings()">Settings</a>
         </div>
     </div>
 </div>
@@ -142,10 +161,10 @@
             </div>
             <div class="modal-body">
                 <!-- Session selection -->
-				<label for="outing-session-select">Select a session:</label>
-				<select class="form-select" id="outing-session-select" onchange="onOutingSessionChanged()">
-					<option value="0" selected>Select...</option>
-				</select>
+                <label for="outing-session-select">Select a session:</label>
+                <select class="form-select" id="outing-session-select" onchange="onOutingSessionChanged()">
+                    <option value="0" selected>Select...</option>
+                </select>
 
                 <div id="outing-ttb">
                     <!-- Things to bring -->
@@ -158,10 +177,10 @@
                 </div>
             </div>
             <div class="modal-footer">
-				<button class="btn btn-primary" type="button" onclick="toggleScanning()"><i class="bi bi-play-fill"
-				id="scanning-i"></i>
-					<span id="scanning-start-stop">Start</span> Scanning
-				</button>
+                <button class="btn btn-primary" type="button" onclick="toggleScanning()"><i class="bi bi-play-fill"
+                id="scanning-i"></i>
+                    <span id="scanning-start-stop">Start</span> Scanning
+                </button>
                 <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Close
                 </button>
             </div>
@@ -198,8 +217,58 @@
                 </div>
             </div>
             <div class="modal-footer">
-				<button class="btn btn-primary" data-bs-dismiss="modal" onclick="savePlan()" type="button"><i class="bi bi-floppy2-fill"></i>
-				Save and close</button>
+                <button class="btn btn-primary" data-bs-dismiss="modal" onclick="savePlan()" type="button"><i class="bi bi-floppy2-fill"></i>
+                Save and close</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div aria-hidden="true" aria-labelledby="settingsModalLabel" class="modal fade" id="settingsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="settingsModalLabel"><i class="bi bi-person-fill-gear"></i> Settings
+                </h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                      <label class="input-group-text">Dark Mode</label>
+                      <select id="settings-dark" class="form-control" aria-label="Dark Mode">
+                          <option value="device" selected>Follow system</option>
+                          <option value="dark">Dark</option>
+                          <option value="light">Light</option>
+                      </select>
+                </div>
+                <div class="input-group mb-3">
+                      <label class="input-group-text">Page Zoom</label>
+                      <select id="settings-zoom" class="form-control" aria-label="Display Zoom">
+                          <option value="200%">200%</option>
+                          <option value="175%">175%</option>
+                          <option value="150%">150%</option>
+                          <option value="125%">125%</option>
+                          <option value="100%" selected>100%</option>
+                          <option value="75%">75%</option>
+                      </select>
+                </div>
+                <div class="input-group mb-3">
+                      <label class="input-group-text">Hostname</label>
+                      <input type="text" class="form-control" id="settings-host" placeholder="192.168.0.1" required>
+                      <span class="input-group-text">:</span>
+                      <input type="text" class="form-control" id="settings-port" placeholder="8000" required>
+                      <div class="invalid-feedback" id="invalid-host">Invalid hostname
+                      </div>
+                      <div class="invalid-feedback" id="invalid-port">Invalid port
+                      </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="saveSettings()" type="button"><i class="bi bi-floppy2-fill"></i>
+                Save and close</button>
                 <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="bi bi-x"></i> Close
                 </button>
             </div>
