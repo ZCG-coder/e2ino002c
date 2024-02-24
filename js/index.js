@@ -1,5 +1,14 @@
 $(main);
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker
+      .register("js/serviceWorker.js")
+      .then(res => console.log("service worker registered"))
+      .catch(err => console.log("service worker not registered", err))
+  })
+}
+
 // Socket.IO
 let socket = null;
 
@@ -15,7 +24,7 @@ const PROJECT_ID = "e2ino002c-chatbot-esxu";
 const MODEL_ID = "text-bison-32k@002";
 const LOCATION_ID = "us-central1";
 // shh...!
-const API_KEY = "ya29.a0AfB_byB7v_j1KB5v7-ya9WsChQB5pyElsuxhkncuJqLY9eikgGuzmhaWW5YnTui6ClIE8zaglYLxpOwNQ22Yz3MI0sr9CF1-nbD5iavSzR246AYXWY9T1iBJqHZinTpAPyIbSdd4KRqAbsmP89kt77pPZ2Rl_d5LFrS8h3CF6p4aCgYKAUUSARMSFQHGX2Mi5VGO9jcCCU8Ql5kfMER5PA0178";
+const API_KEY = "<REPLACE WITH YOURS>";
 const MONTHS_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 // Plans

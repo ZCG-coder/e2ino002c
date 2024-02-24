@@ -59,21 +59,25 @@ function onReceiveScore(score) {
     let passed = cvtScore >= 50;
     let excellentScore = cvtScore >= 75;
     let color, title;
+    let icoName;
     let subtitle = `Your score was ${score}.`;
     if (!passed) {
         title = "Try harder next time.";
         color = "#e35619";
+        icoName = "bi-x-octagon-fill";
     }
     else if (passed && !excellentScore) {
         title = "Good job!";
         color = "#e3dc19";
+        icoName = "bi-check";
     }
     else {
         title = "You did it!";
         color = "#14cc17";
+        icoName = "bi-check";
     }
     let icon = `<h1 style="color: ${color}" class="musicScoreModalSubtitleIcon">
-                    <i class="bi bi-${passed ? "check" : "x"}-octagon-fill"></i>
+                    <i class="bi ${icoName}"></i>
                 </h1>`;
 
     const scoreModal = $("#musicScoreModal");

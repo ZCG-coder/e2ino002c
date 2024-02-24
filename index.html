@@ -17,6 +17,14 @@
     <!-- Main -->
     <link href="css/index.css" rel="stylesheet">
     <!-- endregion -->
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="res/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="res/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="res/icons/favicon-16x16.png">
+    <link rel="manifest" href="res/icons/site.webmanifest">
+    <meta name="apple-mobile-web-app-status-bar" content="#3350cc" />
+    <meta name="theme-color" content="#3350cc" />
 </head>
 <body>
 <noscript>You will need JavaScript to run this application.</noscript>
@@ -62,25 +70,25 @@
 <!-- Entry Points -->
 <div class="container text-center">
     <div class="row">
-        <div class="col round-button">
+        <div class="col round-button" data-bs-target="#chatModal" data-bs-toggle="modal">
             <i class="bi bi-chat-dots-fill"></i>
-            <a data-bs-target="#chatModal" data-bs-toggle="modal" href="#">Chat</a>
+            <a href="#">Chat</a>
         </div>
-        <div class="col round-button">
+        <div class="col round-button" data-bs-target="#musicModal" data-bs-toggle="modal" onclick="loadAudio()">
             <i class="bi bi-music-note-beamed"></i>
-            <a data-bs-target="#musicModal" data-bs-toggle="modal" href="#" onclick="loadAudio()">Music</a>
+            <a href="#">Music</a>
         </div>
-        <div class="col round-button">
+        <div class="col round-button" data-bs-target="#outingModal" data-bs-toggle="modal" onclick="loadOuting()">
             <i class="bi bi-door-open-fill"></i>
-            <a data-bs-target="#outingModal" data-bs-toggle="modal" href="#" onclick="loadOuting()">Outing</a>
+            <a href="#">Outing</a>
         </div>
-        <div class="col round-button">
+        <div class="col round-button" data-bs-target="#planModal" data-bs-toggle="modal" onclick="loadPlan()">
             <i class="bi bi-calendar-check-fill"></i>
-            <a data-bs-target="#planModal" data-bs-toggle="modal" href="#" onclick="loadPlan()">Plan</a>
+            <a href="#">Plan</a>
         </div>
-        <div class="col round-button">
+        <div class="col round-button" data-bs-target="#settingsModal" data-bs-toggle="modal" onclick="loadSettings()">
             <i class="bi bi-person-fill-gear"></i>
-            <a data-bs-target="#settingsModal" data-bs-toggle="modal" href="#" onclick="loadSettings()">Settings</a>
+            <a href="#">Settings</a>
         </div>
     </div>
 </div>
