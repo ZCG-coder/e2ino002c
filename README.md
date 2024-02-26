@@ -1,6 +1,6 @@
 # HKAGE Programme E2INO002C - "Magnesium"
 
-## A brief introduction of this program (for those who do not know about it)
+## A brief introduction of this program (for those who are interested in it)
 
 > This programme series is designed to enhance students’ knowledge and interest in Artificial Intelligence (AI)
 > and Internet of Things (IoT) through applying design thinking process to make smart living products.
@@ -53,3 +53,24 @@ detects special barcodes on the objects, which are then sent back to the client 
 
 The user can customize the application to their preference, including preferred dark mode, text size and the IP address
 of the server.
+
+## Getting Started
+
+This project is written in HTML + JavaScript + CSS. To run this app, you would need to set up a server like this:
+
+> [!NOTE]
+> There are many development servers out there. This document only documents the [`serve` Server](https://www.npmjs.com/package/serve),
+> which in my opinion is quite robust and easy to use.
+
+1. Clone the repository
+   Run the following command in the terminal (if you are running Linux or macOS) or the Command Prompt (if you are running Windows):
+   ```shell
+   git clone https://github.com/ZCG-coder/e2ino002c.git
+   ```
+2. Install [Node.js](https://nodejs.org).
+3. Install the [serve Server](https://www.npmjs.com/package/serve).
+4. Serve the directory.
+   ```shell
+   serve
+   ```
+5. The server should now provide a site accessible on `localhost:3000`. Type this URL to the browser to view the Magnesium site.
